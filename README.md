@@ -1,3 +1,3 @@
-Clone do Pinterest
+## Projeto 01
 
-Usando Nextjs
+Clone do Pinterest usando Nextjs, Typescript e TailwindCSS
