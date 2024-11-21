@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import { Search } from "@/components/ui/search/Search";
+import { Search } from "@/components/ui/searchPasta/Search";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 
-import { Popover, PopoverContent } from '../popover/popover';
+import { Popover, PopoverContent } from '../popoverPasta/popover';
 import { PopoverTrigger } from '@radix-ui/react-popover';
 
 export const Header = () => {
@@ -13,8 +13,8 @@ export const Header = () => {
         <header className="w-full h-[80px] gap-2 bg-branco p-5 flex items-center">
             <div className="hover:bg-cinza p-3 rounded-full  flex-shrink-0 w-[50px] h-[50px]">
                 <Image 
-                    width={50} 
-                    height={50} 
+                    width={40} 
+                    height={40} 
                     alt="Logo Pinterest" 
                     src="/logo.webp" 
                     className="object-contain"
