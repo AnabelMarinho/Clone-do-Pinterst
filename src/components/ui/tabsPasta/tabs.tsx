@@ -1,36 +1,56 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import Pins from "@/app/(pages)/(tabs)/pins/page";
+import Todos from "@/app/(pages)/(tabs)/todosPins/page";
+
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 function Tabs() {
-  const [tab, setTab] = useState("tab1");
+  const pathname = usePathname();
+
+  // Inicialize o estado com "/todosPins" por padrão
+  const [activeTab, setActiveTab] = useState("/todosPins");
+
+  useEffect(() => {
+    // Define a tab ativa com base na URL
+    if (pathname === "/todosPins" || pathname === "/pins") {
+      setActiveTab(pathname);
+    }
+  }, [pathname]);
+
+  // Função para verificar se a rota atual é a ativa
+  const isActive = (path: string) => activeTab === path;
 
   return (
-    <div className="w-full flex items-center h-[64px] bg-branco">
-        <Link href="/todosPins">
+    <div>
+      <div className="w-full flex items-center h-[64px] bg-branco p-4 gap-8">
+       
           <button
-            className="relative py-2 px-4 mt-1 mx-2 text-center rounded text-[16px] font-semibold hover:bg-cinzaMedio focus:bg-branco"
-            onClick={() => setTab("tab1")}
+            className={`relative py-2 ml-2 text-center rounded text-[16px] font-semibold hover:bg-cinzaMedio focus:bg-branco ${isActive("/todosPins")}`}
+            onClick={() => setActiveTab("/todosPins")}
           >
             Todos
-            {tab === "tab1" && (
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[55%] h-[3px] bg-preto rounded-full"></span>
+            {isActive("/todosPins") && (
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[100%] h-[3px] bg-preto rounded-full"></span>
             )}
           </button>
-        </Link>
 
-        <Link href="/pins">
           <button
-            className="relative py-2 px-4 mt-1 mx-2 text-center rounded text-[16px] font-semibold hover:bg-cinzaMedio focus:bg-branco"
-            onClick={() => setTab("tab2")}
+            className={`relative py-2 text-center rounded text-[16px] font-semibold hover:bg-cinzaMedio focus:bg-branco ${isActive("/pins")}`}
+            onClick={() => setActiveTab("/pins")}
           >
             Meus Pins salvos
-            {tab === "tab2" && (
+            {isActive("/pins") && (
               <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[55%] h-[3px] bg-preto rounded-full"></span>
             )}
           </button>
-        </Link>
+        
+      </div>
+
+      {/* Renderiza os componentes dependendo da aba ativa */}
+      {isActive("/todosPins") && <Todos />}
+      {isActive("/pins") && <Pins />}
     </div>
   );
 }

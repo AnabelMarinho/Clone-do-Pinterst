@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {Inter} from "next/font/google";
 
 import { Header } from "@/components/ui/headerPasta/Header";
-import Tabs from "@/components/ui/tabsPasta/tabs";
 import "./globals.css";
 
 const inter = Inter({subsets: ["latin"]});
@@ -19,12 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-Br">
-      <body
-        className={`antialiased`}
-      >
+      <body className="antialiased">
         <Header />
-        <Tabs />
-        {children}
+        <div className="pt-[80px]">{children}</div>
       </body>
     </html>
   );

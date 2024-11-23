@@ -1,7 +1,6 @@
 export const Todos = () => {
 
-    return(
-        
+    return( 
      <main className="w-full h-[50px] bg-branco">
         Todos
      </main>
